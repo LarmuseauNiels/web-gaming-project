@@ -427,7 +427,7 @@ Game.Stages = (function(module) {
       
       ps.player.addToWorld(world);
       
-      
+      /*
       // Setup creatures
       let newMummy = Game.Model.Creature({
         
@@ -442,6 +442,7 @@ Game.Stages = (function(module) {
       
       
       // Setup moving platforms
+      /*
       let p1 = Game.Model.Platform({
         
         id : 'oscillator',
@@ -452,7 +453,7 @@ Game.Stages = (function(module) {
       });
       
       ps.creaturesArray.push(p1);
-      p1.addToWorld(world);
+      p1.addToWorld(world);*/
       
       
       // Quick test!!! - setup constraint between mummy and platform
