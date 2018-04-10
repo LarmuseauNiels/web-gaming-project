@@ -28,3 +28,19 @@ during a zombie apocalypse.
     * obstacles
 4. try to reach the end.
 5. Show score at the End / Restart
+
+
+
+### MVP
+
+- Design verwerkt
+- Zombie spawnen (stationary)
+- Einde van het level halen
+- Score aan het einde zien
+- Restart game
+
+#### Secondary
+
+- Character kiezen
+- Schieten om zombies te killen
+- Zombies bewegen
