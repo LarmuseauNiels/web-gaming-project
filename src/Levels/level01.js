@@ -53,9 +53,6 @@ Game.Levels = (function(module) {
     }
   });
 
-
-
-
   module.Level = (module.Level || []);
 
   // Private state
@@ -68,7 +65,7 @@ Game.Levels = (function(module) {
 
   module.Level[0] = {
 
-    name : 'School of Management ',
+    name : 'School of Management',
 
     // background provides a viewport aligned image
     background : {
