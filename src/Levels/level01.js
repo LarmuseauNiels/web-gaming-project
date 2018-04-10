@@ -15,7 +15,6 @@ Game.Levels = (function(module) {
   // Sprites
   Game.Sprites = (Game.Sprites || []);
   
-  Game.Sprites[2] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/grass_tile.png' });
   Game.Sprites[1] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/empty.png' });
   Game.Sprites[2] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/cobblestone.jpg' });
   
