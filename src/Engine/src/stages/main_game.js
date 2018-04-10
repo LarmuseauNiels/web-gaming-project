@@ -445,7 +445,7 @@ Game.Stages = (function(module) {
       let p1 = Game.Model.Platform({
 
         id : 'oscillator',
-        pos : { x : 380, y : 130},
+        pos : { x : 460, y : 375},
         size : { width : 64, height : 16 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
         initState : 'moving',
         mass : 1
