@@ -21,7 +21,7 @@ Game = (function(module) {
     
     player_sprite_scale : 1,
 
-    player_controls : { moveLeft : 'LEFT', moveRight : 'RIGHT', jump : 'SPACE' },
+    player_controls : { moveLeft : 'LEFT', moveRight : 'RIGHT', jump : 'SPACE', shoot : 'B' },
     
     
     pickup_sprite_scale : 0.75, // Bigger number = larger sprite!
@@ -37,7 +37,7 @@ Game = (function(module) {
     default_platform_mass : 20,
     default_platform_sprite_scale : 1,
     
-    show_bounding_volume : true
+    show_bounding_volume : false
   };
   
   

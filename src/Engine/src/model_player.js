@@ -32,12 +32,51 @@ Game.Model = (function(module) {
       score : 0
       
     };
+
+    
     
     
     // -----------------------------------------
     
     
     // Private (default) states
+
+/*
+    let ShootingState = function(params = {}) {
+      let self = Game.Model.State(params);
+      //////
+      let state_ps = {
+      
+        standLeft : ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['Shooting_left']}),
+        
+        standRight : ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['Shooting_right']})
+      };
+      
+      // Public interface
+      
+      self.enter = function(env, tDelta) {
+        
+        if (ps.direction==Game.Model.FacingDirection.Right) {
+        
+          ps.currentAnimationSequence = state_ps.standRight;
+          ps.currentAnimationSequence.reset();
+        }
+        else {
+          
+          ps.currentAnimationSequence = state_ps.standLeft;
+          ps.currentAnimationSequence.reset();
+        }
+      }
+      
+      self.update = function(env, tDelta) {
+        
+        ps.currentAnimationSequence.updateFrame(tDelta / 1000);
+        
+        return true;
+      }
+      //
+      return self;
+    }*/
 
     let StandingState = function(params = {}) {
       

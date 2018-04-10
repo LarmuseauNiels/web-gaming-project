@@ -75,7 +75,7 @@ Game.Levels = (function(module) {
     // background provides a viewport aligned image
     background : {
       
-      image : Game.Graphics.Sprite( {imageURL:'Assets/Images/FullMoon.jpg'} ),
+      image : Game.Graphics.Sprite( {imageURL:'Assets/Images/background.png'} ),
       maintainAspect : false,
       alignedToCamera : true      
     },
@@ -102,7 +102,7 @@ Game.Levels = (function(module) {
         }
         ,*/
         {
-          image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/FullMoon.jpg' }),
+          image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/background.png' }),
           mode : RenderLevelImageMode.Normal,
           offset : { x : 0, y : 0 },
           sigmaOverride : 0.99
