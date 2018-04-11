@@ -11,88 +11,87 @@ let RenderLevelImageMode = Object.freeze({
 // Example level
 
 Game.Levels = (function(module) {
-  
+
   // Sprites
   Game.Sprites = (Game.Sprites || []);
+<<<<<<< HEAD
   
   Game.Sprites[1] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/empty.png' });
   Game.Sprites[2] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/cobblestone.jpg' });
   
   
+=======
+
+  Game.Sprites[1] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/cobblestone.jpg' });
+  Game.Sprites[2] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/invisible.png' });
+  Game.Sprites[3] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/cobblestone.jpg' });
+
+
+>>>>>>> roelof
   // Pickups
   Game.PickupTypes = (Game.PickupTypes || []);
-  
+
 
   Game.PickupTypes[10] = Game.Model.PickupModel.PickupType( {
-    
-    spriteURI : 'Assets//Images//pickup_points.png',  
+
+    spriteURI : 'Assets//Images//pickup_points.png',
     collisionGroup : 0,
     handler : function(collector) {
-    
       collector.addPoints(50);
     }
   });
-  
+
   Game.PickupTypes[11] = Game.Model.PickupModel.PickupType( {
-    
+
     spriteURI : 'Assets//Images//pickup_energy.png',
     collisionGroup : 0,
     handler : function(collector) {
-    
       collector.addStrength(20);
     }
   });
-  
+
   Game.PickupTypes[12] = Game.Model.PickupModel.PickupType( {
-    
+
     spriteURI : 'Assets//Images//pickup_extralife.png',
     collisionGroup : 0,
     handler : function(collector) {
-    
       collector.addExtraLife();
     }
   });
 
-  
-  
-  
   module.Level = (module.Level || []);
-  
+
   // Private state
   let tileWidth = 32;
   let tileHeight = 32;
-  
+
   // Number of tiles to fit on the screen of size (1024 x 768) with tile sizes of 32x32
   let mapWidth = 64;
   let mapHeight = 16;
-  
-  
-  
   module.Level[0] = {
-    
-    name : 'Spooky level 1',
-    
+
+    name : 'School of Management',
+
     // background provides a viewport aligned image
     background : {
+<<<<<<< HEAD
       
       image : Game.Graphics.Sprite( {imageURL:'Assets/Images/background.png'} ),
+=======
+
+      image : Game.Graphics.Sprite( {imageURL:'Assets/Images/FullMoon.jpg'} ),
+>>>>>>> roelof
       maintainAspect : false,
-      alignedToCamera : true      
+      alignedToCamera : true
     },
-    
+
     renderLevels : {
-      
+
       sigma : 2.0,
-      
+
       // Render layers ordered front-to-back
       levels : [
     /*
-        {
-          image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/Clouds2.png' }),
-          mode : RenderLevelImageMode.Normal, // default
-          sigmaOverride : 0.35
-          //periodicity : 2 
-        },
         {
           image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/SpookyCreatures01.png' }),
           mode : RenderLevelImageMode.Normal,
@@ -108,37 +107,37 @@ Game.Levels = (function(module) {
           sigmaOverride : 0.99
           //periodicity : 1
         }
-    
       ]
     },
-    
+
     /*
     background : {
-      
+
       main : {
-        
+
         image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/FullMoon.jpg' }),
-        
+
         alignedToCamera : true,
         periodicity : 1
       },
-      
+
       intermediate : [
-      
+
         { image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/Clouds.png' }), pScale : 0.25, periodicity : 2 },
-        
+
         { image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/SpookyCreatures01.png' }), pScale : 0.5, periodicity : 1 }
-      
+
       ]
     },
     */
-    
+
     tileWidth : tileWidth,
     tileHeight : tileHeight,
     mapDimension : { width : mapWidth, height : mapHeight },
     mapTileArray : (function() {
-    
+
       let mapImage = [
+<<<<<<< HEAD
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -155,49 +154,65 @@ Game.Levels = (function(module) {
         1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
         1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
         2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+=======
+        1,  1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1,  0,  0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  3,  3, 3, 3, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 3, 3, 3, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 0, 0, 0, 3, 10, 0, 3, 0, -1, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+>>>>>>> roelof
       ];
-      
-      
       let map = [];
-      
+
       for (let i=0; i<mapWidth; ++i) {
-        
+
         map[i] = [];
-        
+
         for (let j=0; j<mapHeight; ++j) {
-                    
+
           map[i][j] = mapImage[j * mapWidth + i];
         }
       }
-      
+
       /*
       // Procedurally generate tile map data - stored in column major format
-      for (let i=1; i<(mapWidth-1); ++i) {
-        
+      for (let i=0; i<mapWidth; ++i) {
+
         map[i] = [];
-        
-        for (let j=2; j<(mapHeight-2); ++j) {
-                    
+
+        for (let j=0; j<mapHeight; ++j) {
+
           map[i][j] = (Math.random() < 0.1) ? 1 : 0; // 0 indicates an empty map tile
         }
       }
-      /*
+
       // Add floor
       for (let i=0; i<mapWidth; ++i) {
-      
         map[i][mapHeight - 1] = 2;
       }
       */
-      
-      
+
+
       return map;
-      
+
     })()
-    
-    
+
+
   };
-  
-  
+
+
   return module;
-  
+
 })((Game.Levels || {}));
