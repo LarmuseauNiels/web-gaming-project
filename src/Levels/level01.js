@@ -43,13 +43,29 @@ Game.Levels = (function(module) {
   });
 
   Game.PickupTypes[12] = Game.Model.PickupModel.PickupType( {
-
     spriteURI : 'Assets//Images//pickup_extralife.png',
     collisionGroup : 0,
     handler : function(collector) {
       collector.addExtraLife();
     }
   });
+
+  Game.PickupTypes[13] = Game.Model.PickupModel.PickupType({
+    spriteURI : 'Assets//Images//pickup_door.png',
+    collisionGroup : 0,
+    handler : function(collector) {
+      console.log('picked up last item');
+      Game.stageGraph.setExitMainLoop(true);
+
+      let player = Game.stageGraph.getPlayer();
+
+      let endGameStage = Game.Stages.EndGameStage({
+        score: player.score() || 'Unknown',
+      });
+      Game.stageGraph = endGameStage;
+      Game.stageGraph.enterStage();
+    }
+  })
 
   module.Level = (module.Level || []);
 
@@ -66,7 +82,7 @@ Game.Levels = (function(module) {
 
     // background provides a viewport aligned image
     background : {
-      
+
       image : Game.Graphics.Sprite( {imageURL:'Assets/Images/background.png'} ),
       maintainAspect : false,
       alignedToCamera : true
@@ -126,7 +142,7 @@ Game.Levels = (function(module) {
       let mapImage = [
         1,  1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
         1,  0,  0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-        1,  0,  0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+        1,  0,  0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 13, 1,
         1,  0,  0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 3, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 1,
         1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
         1,  0,  0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
