@@ -428,23 +428,8 @@ Game.Stages = (function(module) {
 
       ps.player.addToWorld(world);
 
-      /*
-      // Setup creatures
-      let newMummy = Game.Model.Creature({
-
-        id : 'mummy',
-        pos : { x : 64, y : 192},
-        size : { width : 64, height : 64 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
-        initState : 'doing_stuff'
-      });
-      ps.creaturesArray.push(newMummy);
-      newMummy.addToWorld(world);
-      */
-
-
       // Setup moving platforms
       let p1 = Game.Model.Platform({
-
         id : 'oscillator',
         pos : { x : 460, y : 360},
         size : { width : 64, height : 16 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
@@ -453,18 +438,6 @@ Game.Stages = (function(module) {
       });
       ps.creaturesArray.push(p1);
       p1.addToWorld(world);
-
-      // Quick test!!! - setup constraint between mummy and platform
-      /*
-      let constraint = Matter.Constraint.create({
-          bodyA : p1.body(),
-          pointA: { x: 0, y: 0 },
-          bodyB: newMummy.body(),
-          pointB: { x: 0, y: 0 }
-      });
-
-      Matter.World.add(world, constraint);
-      */
 
 
       // All processing hangs off Matter.js update
@@ -735,35 +708,36 @@ Game.Stages = (function(module) {
         ps.camera.pos(cameraPos);
       }
 
-      ps.bullets.forEach(bullet => {
-        bullet.update();
-      });
-``
-      if (ps.reload > 0) {
-        ps.reload--;
-      }
+      //C.forEach(bullet => {
+      //  bullet.update();
+      //});
+      if(ps.reload>0) ps.reload--;
 
-      if (ps.keyboard.isPressed(Game.config.player_controls.shoot) && reload == 0){
-        reload = 15;
+      if(ps.keyboard.isPressed(Game.config.player_controls.shoot) && ps.reload == 0){
+        ps.reload = 15;
         let playerPos = ps.player.position();
         let bullet
         if(ps.player.facingright()){
           bullet = Game.Model.Projectile({
             id : 'bullet',
             pos : { x : playerPos.x + 15, y : playerPos.y},
-            size : { width : 8, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+            size : { width : 24, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
             initState : 'right',
             mass : 1
           });
+          var force = 10;
+          bullet.goright(0.035);
+          //Matter.Body.setAngularVelocity(bullet, 10)
         }
         else {
           bullet = Game.Model.Projectile({
             id : 'bullet',
             pos : { x : playerPos.x - 15, y : playerPos.y},
-            size : { width : 8, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+            size : { width : 24, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
             initState : 'left',
             mass : 1
           });
+          bullet.goright(-0.035);
         }
         let engine = Game.system.physicsEngine();
         let world = engine.world;
@@ -793,6 +767,7 @@ Game.Stages = (function(module) {
       } else {
         window.requestAnimationFrame(mainLoop.bind(self));
       }
+
     }
 
     let setExitMainLoop = function(bool) {
@@ -831,6 +806,7 @@ Game.Stages = (function(module) {
     self.getPlayer = getPlayer;
 
     return self;
+
   }
 
 

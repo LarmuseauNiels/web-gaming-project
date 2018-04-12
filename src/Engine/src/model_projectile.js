@@ -11,11 +11,11 @@ Game.Model = (function(module) {
     
     let ps = {
     
-      body : Matter.Bodies.rectangle(params.pos.x, params.pos.y, params.size.width, params.size.height, { id : params.id, isStatic : true, isSensor : false }),
+      body : Matter.Bodies.rectangle(params.pos.x, params.pos.y, params.size.width, params.size.height, { id : params.id, isStatic : false, isSensor : false }),
       mass : (params.mass || 1),
       size : params.size,
       contactProfile : 0,
-      scale : (params.scale || 8),
+      scale : (params.scale || 1),
       boundingVolumeScale : (params.boundingVolumeScale || 1.0),
       
       stateGraph : {},
@@ -46,7 +46,7 @@ Game.Model = (function(module) {
         
           console.log("projectile  flying right...");
           
-          //ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['right']});
+          ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['right']});
           
           state_ps.theta = 0;
           state_ps.initPos = ps.body.position;
@@ -56,7 +56,7 @@ Game.Model = (function(module) {
         self.update = function(env, tDelta) {
           
           //ps.currentAnimationSequence.updateFrame(tDelta / 1000);
-          Matter.Body.translate(ps.body, { x : 3, y : 0 } );
+          //Matter.Body.translate(ps.body, { x : 3, y : 0 } );
           return true;
         }
         
@@ -85,7 +85,7 @@ Game.Model = (function(module) {
       
         console.log("Projectile flying left...");
         
-        //ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['left']});
+        ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['left']});
         
         state_ps.theta = 0;
         state_ps.initPos = ps.body.position;
@@ -94,7 +94,7 @@ Game.Model = (function(module) {
       
       self.update = function(env, tDelta) {
         
-        Matter.Body.translate(ps.body, { x : -3, y : 0 } );
+        //Matter.Body.translate(ps.body, { x : -3, y : 0 } );
                 
         return true;
       }
@@ -249,8 +249,8 @@ Game.Model = (function(module) {
        Matter.World.add(world, ps.body);
     }
 
-    let goright = function() {
-      ps.body.position = ps.body.position++
+    let goright = function(force) {
+      Matter.Body.applyForce(ps.body,ps.body.position,{x:force,y:0});
     }
     
     
@@ -292,6 +292,18 @@ Game.Model = (function(module) {
         });
       }
     }
+
+   
+
+    let collideWithCreature = function(creature, env) {
+    
+      console.log('hit creature!');
+      let engine = env.physicsEngine();
+      let world = engine.world;
+      Composite.remove(world, ps.body);
+      Composite.remove(world, creature);
+      EndState();
+    }
     
     
     
@@ -308,6 +320,7 @@ Game.Model = (function(module) {
     // Collision interface
     self.doCollision = doCollision;
     self.collideWithPlayer = collideWithPlayer;
+    self.collideWithCreature = collideWithCreature;
     
     
     // Inital state entry

@@ -251,6 +251,15 @@ Game.Model = (function(module) {
         });
       }
     }
+
+    let collideWithBullet = function(bullet, env) {
+      console.log('creature dies!');
+      let engine = Game.system.physicsEngine();
+      let world = engine.world;
+      Matter.Composite.remove(world, ps.body);
+      Matter.Composite.remove(world, bullet);
+      EndState();
+    }
     
     
     
@@ -266,6 +275,7 @@ Game.Model = (function(module) {
     // Collision interface
     self.doCollision = doCollision;
     self.collideWithPlayer = collideWithPlayer;
+    self.collideWithBullet = collideWithBullet;
     
     
     // Inital state entry
