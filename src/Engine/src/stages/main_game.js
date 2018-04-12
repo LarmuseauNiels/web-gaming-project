@@ -655,6 +655,9 @@ Game.Stages = (function(module) {
       window.requestAnimationFrame(mainLoop.bind(self));
     }
     
+    var instart = true;
+    var juststarted = true;
+
     let mainLoop = function() {
       
       // Void frame threshold:
@@ -664,7 +667,22 @@ Game.Stages = (function(module) {
       // However, let's run a 'normal frame time range' between 16 and 35ms.
       // Assume <16 not possible given browser refresh rate control ** investigate further **
       // So let 'void time' threshold be 35ms
+      if(juststarted){
+        console.log("juststarted");
+        let context = Game.canvas.getContext("2d");
+        context.fillStyle = "blue";
+        context.font = "bold 72px Arial";
+        context.fillText("Press space to start", (canvas.width / 2) - 350, (canvas.height / 2) + 8);
+
+        juststarted = false;
+      };
       
+      
+      if(instart){
+        if(ps.keyboard.isPressed('SPACE')){instart = false;}
+        
+      }
+      else{
       const deltaThreshold = 35; // ms
       
       // Update clock
@@ -782,7 +800,7 @@ Game.Stages = (function(module) {
       
       // Draw new frame
       drawScene(Game.context, Game.canvas);
-      
+    }
       // Show stats
       $('#actualTime').html('Seconds elapsed = ' + Game.system.clock().actualTimeElapsed());
       $('#timeDelta').html('Time Delta = ' + Math.round(Game.system.clock().deltaTime()));
@@ -802,6 +820,7 @@ Game.Stages = (function(module) {
         
         window.requestAnimationFrame(mainLoop.bind(self));
       }
+      
     }
     
     let leaveStage = function() {
@@ -832,6 +851,7 @@ Game.Stages = (function(module) {
     
     
     return self;
+    
   }
   
   
