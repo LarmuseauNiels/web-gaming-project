@@ -188,6 +188,8 @@ Game.Model = (function(module) {
       
       // Public interface
       
+
+
       self.enter = function(env, tDelta) {
               
         if (ps.direction==Game.Model.FacingDirection.Right) {
@@ -341,6 +343,8 @@ Game.Model = (function(module) {
       }
     );
     
+    
+
     // Walking->Standing
     ps.stateGraph['WalkingState'].addTransition(
     
@@ -657,6 +661,15 @@ Game.Model = (function(module) {
       console.log('platform ahoy!');
       
     }
+
+    let collideWithBullet = function(Bullet, env) {
+    
+      
+    }
+
+    let facingright = function(){
+      return (ps.direction!=Game.Model.FacingDirection.Left);
+    }
     
     // Pubic interface
     self.draw = draw;
@@ -670,6 +683,7 @@ Game.Model = (function(module) {
     self.addPoints = addPoints;
     self.addStrength = addStrength;
     self.addExtraLife = addExtraLife;
+    self.facingright = facingright;
     
     // Contact profile interface
     self.hasContactProfile = hasContactProfile;
@@ -682,6 +696,8 @@ Game.Model = (function(module) {
     self.collideWithPickup = collideWithPickup;
     self.collideWithCreature = collideWithCreature;
     self.collideWithPlatform = collideWithPlatform;
+    self.collideWithBullet = collideWithBullet;
+
     
     // Inital state entry
     ps.currentState.enter(self, params.env, params.tDelta);

@@ -12,10 +12,10 @@ Game.Model = (function(module) {
     let ps = {
     
       body : Matter.Bodies.rectangle(params.pos.x, params.pos.y, params.size.width, params.size.height, { id : params.id, isStatic : true, isSensor : false }),
-      mass : (params.mass || Game.config.default_platform_mass),
+      mass : (params.mass || 1),
       size : params.size,
       contactProfile : 0,
-      scale : (params.scale || Game.config.default_platform_sprite_scale),
+      scale : (params.scale || 8),
       boundingVolumeScale : (params.boundingVolumeScale || 1.0),
       
       stateGraph : {},
@@ -44,9 +44,9 @@ Game.Model = (function(module) {
         
         self.enter = function(env, tDelta) {
         
-          console.log("Projectile fired...");
+          console.log("projectile  flying right...");
           
-          ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['moving']});
+          //ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['right']});
           
           state_ps.theta = 0;
           state_ps.initPos = ps.body.position;
@@ -55,12 +55,8 @@ Game.Model = (function(module) {
         
         self.update = function(env, tDelta) {
           
-          ps.currentAnimationSequence.updateFrame(tDelta / 1000);
-          
-          let y_ = state_ps.initPos.y + Math.sin(state_ps.theta) * 2;
-          Matter.Body.setPosition(ps.body, {x : state_ps.initPos.x, y : y_});
-          state_ps.theta += ((Math.PI / 180.0) * 5.0);
-                  
+          //ps.currentAnimationSequence.updateFrame(tDelta / 1000);
+          Matter.Body.translate(ps.body, { x : 3, y : 0 } );
           return true;
         }
         
@@ -87,9 +83,9 @@ Game.Model = (function(module) {
       
       self.enter = function(env, tDelta) {
       
-        console.log("Projectile fired...");
+        console.log("Projectile flying left...");
         
-        ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['moving']});
+        //ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['left']});
         
         state_ps.theta = 0;
         state_ps.initPos = ps.body.position;
@@ -98,11 +94,7 @@ Game.Model = (function(module) {
       
       self.update = function(env, tDelta) {
         
-        ps.currentAnimationSequence.updateFrame(tDelta / 1000);
-        
-        let y_ = state_ps.initPos.y + Math.sin(state_ps.theta) * 2;
-        Matter.Body.setPosition(ps.body, {x : state_ps.initPos.x, y : y_});
-        state_ps.theta += ((Math.PI / 180.0) * 5.0);
+        Matter.Body.translate(ps.body, { x : -3, y : 0 } );
                 
         return true;
       }
@@ -136,7 +128,8 @@ Game.Model = (function(module) {
     
     // Private API
     
-    ps.stateGraph['moving'] = moving();
+    ps.stateGraph['right'] = right();
+    ps.stateGraph['left'] = left();
     
     ps.currentState = ps.stateGraph[params.initState];
     
@@ -255,6 +248,10 @@ Game.Model = (function(module) {
     
        Matter.World.add(world, ps.body);
     }
+
+    let goright = function() {
+      ps.body.position = ps.body.position++
+    }
     
     
     // Accessors
@@ -270,10 +267,9 @@ Game.Model = (function(module) {
     // Collision interface
     
     let doCollision = function(otherBody, env) {
+      if (otherBody.collideWithBullet) {
       
-      if (otherBody.collideWithPlatform) {
-      
-        otherBody.collideWithPlatform(this, {
+        otherBody.collideWithBullet(this, {
           
           objA : env.objB,
           objB : env.objA,
@@ -284,11 +280,10 @@ Game.Model = (function(module) {
     }
     
     let collideWithPlayer = function(player, env) {
-    
-      if (player.collideWithPlatform) {
+      if (player.collideWithBullet) {
         
         // triple dispatch (avoid duplicate functionality)
-        player.collideWithPlatform(this, {
+        player.collideWithBullet(this, {
           
           objA : env.objB,
           objB : env.objA,
@@ -305,6 +300,7 @@ Game.Model = (function(module) {
     self.update = update;
     self.processTransitions = processTransitions;
     self.addToWorld = addToWorld;
+    self.goright = goright;
     
     // Accessors
     self.body = body;    

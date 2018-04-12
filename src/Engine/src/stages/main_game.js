@@ -4,7 +4,8 @@
 // Main game stage
 
 Game.Stages = (function(module) {
-  
+  var bullets = [];
+  var reload = 30;
   module.MainGameStage = function(params={}) {
     
   // Setup instance based on Stage base class
@@ -586,7 +587,7 @@ Game.Stages = (function(module) {
               pairs[i].bodyA.hostObject.doCollision !== undefined &&
               pairs[i].bodyB.hostObject.doCollision !== undefined) {
           
-            console.log('collision!!!');
+            console.log('collision!!!', pairs[i].bodyA.hostObject, pairs[i].bodyB.hostObject);
             pairs[i].bodyA.hostObject.doCollision(
               pairs[i].bodyB.hostObject,
               {
@@ -679,6 +680,8 @@ Game.Stages = (function(module) {
       if (timeDelta > 0) {
         
         Matter.Engine.update(Game.system.physicsEngine(), timeDelta);
+
+        
         
         
         // Have camera follow player
@@ -738,7 +741,44 @@ Game.Stages = (function(module) {
         
         ps.camera.pos(cameraPos);
       }
+
       
+
+      bullets.forEach(bullet => {
+        bullet.update();
+
+      });
+      if(reload>0) reload--;
+      
+      if(ps.keyboard.isPressed(Game.config.player_controls.shoot) && reload == 0){
+        reload = 15;
+        let playerPos = ps.player.position();
+        let bullet
+        if(ps.player.facingright()){
+          bullet = Game.Model.Projectile({
+            id : 'bullet',
+            pos : { x : playerPos.x + 15, y : playerPos.y},
+            size : { width : 8, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+            initState : 'right',
+            mass : 1
+          });
+        }
+        else{
+          bullet = Game.Model.Projectile({
+            id : 'bullet',
+            pos : { x : playerPos.x - 15, y : playerPos.y},
+            size : { width : 8, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+            initState : 'left',
+            mass : 1
+          });
+        }
+        let engine = Game.system.physicsEngine();
+        let world = engine.world;
+        bullet.addToWorld(world);
+        ps.creaturesArray.push(bullet);
+        bullets.push(bullet);
+
+      }
       
       // Draw new frame
       drawScene(Game.context, Game.canvas);
