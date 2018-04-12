@@ -15,7 +15,7 @@ Game.Model = (function(module) {
       mass : (params.mass || 1),
       size : params.size,
       contactProfile : 0,
-      scale : (params.scale || 8),
+      scale : (params.scale || 1),
       boundingVolumeScale : (params.boundingVolumeScale || 1.0),
       
       stateGraph : {},
@@ -46,7 +46,7 @@ Game.Model = (function(module) {
         
           console.log("projectile  flying right...");
           
-          //ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['right']});
+          ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['right']});
           
           state_ps.theta = 0;
           state_ps.initPos = ps.body.position;
@@ -85,7 +85,7 @@ Game.Model = (function(module) {
       
         console.log("Projectile flying left...");
         
-        //ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['left']});
+        ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['left']});
         
         state_ps.theta = 0;
         state_ps.initPos = ps.body.position;

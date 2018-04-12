@@ -785,7 +785,7 @@ Game.Stages = (function(module) {
           bullet = Game.Model.Projectile({
             id : 'bullet',
             pos : { x : playerPos.x + 15, y : playerPos.y},
-            size : { width : 8, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+            size : { width : 24, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
             initState : 'right',
             mass : 1
           });
@@ -797,7 +797,7 @@ Game.Stages = (function(module) {
           bullet = Game.Model.Projectile({
             id : 'bullet',
             pos : { x : playerPos.x - 15, y : playerPos.y},
-            size : { width : 8, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+            size : { width : 24, height : 8 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
             initState : 'left',
             mass : 1
           });
