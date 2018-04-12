@@ -37,7 +37,7 @@ Game = (function(module) {
     default_platform_mass : 20,
     default_platform_sprite_scale : 1,
     
-    show_bounding_volume : true
+    show_bounding_volume : false
   };
   
   

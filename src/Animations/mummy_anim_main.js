@@ -24,6 +24,15 @@ Game.Animation = (function(module) {
 		flipHorizontal : false,
 		flipVertical : false
 	});
+	module.sequence['mummy']['doing_stuff_left'] = Game.Graphics.AnimationSequence({
+
+		spriteSheet : module.spritesheet['mummy'],
+		startFrame : 0,
+		endFrame : 9,
+		oscillate : true,
+		flipHorizontal : true,
+		flipVertical : false
+	});
 
 	return module;
 

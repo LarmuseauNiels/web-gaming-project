@@ -61,6 +61,35 @@ Game.Model = (function(module) {
       return self;
     }
     
+
+    let doing_stuff_left = function(params = {}) {
+      
+      let self = Game.Model.State(params);
+      
+      // Public interface
+      
+      self.enter = function(env, tDelta) {
+      
+        console.log("Creature starting doing_stuff...");
+        
+        ps.currentAnimationSequence = Game.Graphics.SequenceInstance({animationSequence : Game.Animation.sequence[ps.body.id]['doing_stuff_left']});
+      }
+      
+      self.update = function(env, tDelta) {
+        
+        ps.currentAnimationSequence.updateFrame(tDelta / 1000);
+        
+        return true;
+      }
+      
+      self.exit = function(env, tDelta) {
+      
+        console.log("...Creature ending doing_stuff");
+      }
+            
+      return self;
+    }
+
     
     // EndState typically terminates a host character / entity.  This provides a convinient realisation of state terminator in a state diagram.
     let EndState = function(params = {}) {
@@ -84,6 +113,7 @@ Game.Model = (function(module) {
     // Private API
     
     ps.stateGraph['doing_stuff'] = doing_stuff();
+    ps.stateGraph['doing_stuff_left'] = doing_stuff_left();
 
     // Add state transitions here - see model_player for examples
     

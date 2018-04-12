@@ -31,6 +31,19 @@ Game.Stages = (function(module) {
 
     // Private API
 
+    let makemummy = function(initstate, xcor , ycor , world) {
+      
+      let newMummy = Game.Model.Creature({
+        
+        id : 'mummy',
+        pos : { x : xcor, y : ycor},
+        size : { width : 64, height : 64 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+        initState : initstate
+      ps.creaturesArray.push(newMummy);
+      newMummy.addToWorld(world);
+    }
+
+
     let drawHUD = function(context, canvas) {
 
       // Draw HUD
@@ -439,6 +452,17 @@ Game.Stages = (function(module) {
       ps.creaturesArray.push(p1);
       p1.addToWorld(world);
 
+      
+      makemummy('doing_stuff', 64 , 320, world); 
+      makemummy('doing_stuff_left', 240 , 160 ,world); 
+      makemummy('doing_stuff_left', 550 , 290 ,world);
+      makemummy('doing_stuff', 690 , 190 ,world);
+      makemummy('doing_stuff_left', 730 , 100 ,world);
+      makemummy('doing_stuff_left', 1300 , 65 ,world);
+      makemummy('doing_stuff_left', 1650 , 65 ,world);
+      makemummy('doing_stuff_left', 1650 , 450 ,world);
+      makemummy('doing_stuff_left', 1300 , 450 ,world);
+      
 
       // All processing hangs off Matter.js update
 
