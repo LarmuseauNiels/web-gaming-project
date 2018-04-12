@@ -39,6 +39,7 @@ Game.Stages = (function(module) {
         pos : { x : xcor, y : ycor},
         size : { width : 64, height : 64 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
         initState : initstate
+      });
       ps.creaturesArray.push(newMummy);
       newMummy.addToWorld(world);
     }
