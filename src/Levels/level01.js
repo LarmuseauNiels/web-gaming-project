@@ -16,7 +16,7 @@ Game.Levels = (function(module) {
   Game.Sprites = (Game.Sprites || []);
 
   Game.Sprites[1] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/cobblestone.jpg' });
-  Game.Sprites[2] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/invisible.png' });
+  Game.Sprites[2] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/empty.png' });
   Game.Sprites[3] = Game.Graphics.Sprite({ imageURL : 'Assets/Images/cobblestone.jpg' });
 
 
@@ -66,8 +66,8 @@ Game.Levels = (function(module) {
 
     // background provides a viewport aligned image
     background : {
-
-      image : Game.Graphics.Sprite( {imageURL:'Assets/Images/FullMoon.jpg'} ),
+      
+      image : Game.Graphics.Sprite( {imageURL:'Assets/Images/background.png'} ),
       maintainAspect : false,
       alignedToCamera : true
     },
@@ -88,7 +88,7 @@ Game.Levels = (function(module) {
         }
         ,*/
         {
-          image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/FullMoon.jpg' }),
+          image : Game.Graphics.Sprite({ imageURL : 'Assets/Images/background.png' }),
           mode : RenderLevelImageMode.Normal,
           offset : { x : 0, y : 0 },
           sigmaOverride : 0.99

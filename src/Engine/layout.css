@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
 body {
-
+  
   background-color : #000;
 }
 
@@ -22,7 +22,7 @@ body {
 #GameDiv {
 
   position : relative;
-
+  
   width : 1028px;
   height : 772px;
   margin-left : auto;
@@ -33,7 +33,7 @@ body {
 }
 
 #canvas {
-
+  
   position: absolute;
   left : 0px;
   top : 0px;
