@@ -428,7 +428,7 @@ Game.Stages = (function(module) {
       
       ps.player.addToWorld(world);
       
-      /*
+      
       // Setup creatures
       let newMummy = Game.Model.Creature({
         
@@ -441,6 +441,16 @@ Game.Stages = (function(module) {
       ps.creaturesArray.push(newMummy);
       newMummy.addToWorld(world);
       
+      let newwerMummy = Game.Model.Creature({
+        
+        id : 'mummy',
+        pos : { x : 90, y : 192},
+        size : { width : 64, height : 64 }, // ** SAME ASPECT OR SIZE AS SPRITESHEET FRAME SIZES **
+        initState : 'doing_stuff'
+      });
+      
+      ps.creaturesArray.push(newwerMummy);
+      newwerMummy.addToWorld(world);
       
       // Setup moving platforms
       /*
@@ -761,11 +771,10 @@ Game.Stages = (function(module) {
       }
 
       
-
-      bullets.forEach(bullet => {
-        bullet.update();
-
-      });
+      
+      //C.forEach(bullet => {
+      //  bullet.update();
+      //});
       if(reload>0) reload--;
       
       if(ps.keyboard.isPressed(Game.config.player_controls.shoot) && reload == 0){
@@ -780,6 +789,9 @@ Game.Stages = (function(module) {
             initState : 'right',
             mass : 1
           });
+          var force = 10;
+          bullet.goright(0.035);
+          //Matter.Body.setAngularVelocity(bullet, 10)
         }
         else{
           bullet = Game.Model.Projectile({
@@ -789,6 +801,7 @@ Game.Stages = (function(module) {
             initState : 'left',
             mass : 1
           });
+          bullet.goright(-0.035);
         }
         let engine = Game.system.physicsEngine();
         let world = engine.world;
